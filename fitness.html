@@ -23,6 +23,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 padding: 20px 0;
                 display: flex;
                 text-align: center;
+                justify-content: space-between;
             }
             
             header img{
@@ -59,12 +60,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 display: inline-block;
             }
             
+            .search-bar {
+                flex: 1;
+                margin:0 40px;
+            }
+            
+            .search-bar input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+                border: black;
+                border-radius: 5px;
+            }
+            
             .dropdown-content{
                 display: none;
-                position absolute;
+                position: absolute;
                 background-color: bisque;
                 min-width: 160px;
-                z-indez:1;
+                z-index:1;
             }
             
             .dropdown-content a:hover{
@@ -80,51 +94,106 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 text-align:center;
             }
             
+            .fit-ness {
+                margin-bottom: 20px;
+                background-color: azure;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 500px;
+                
+            }
+                
+            
+            .fitness h3 {
+                margin-top: 0;
+            }
+            
+            .fitness p {
+                margin-bottom: 0;
+                
+            }
+            
             footer{
                 background-color: bisque;
                 color: black;
                 padding: 10px 0;
                 text-align: center;
             }
+            
         </style>
         
     </head>
     <body>
         <header>
-            <img src="Fitness and Wellness Logo.png">
+            <img src="Fitness and Wellness Logo.png" alt="Fitness and Wellness Logo">
             
         </header>
         
         <nav>
             <div class="profile-icon">
-                <a href="#"><img src="profile_icon.png">
-                </a>
-                
+                <a href="#"><img src="profile_icon.png" alt="Profile Icon"></a>
             </div>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Contact Us</a>
-            <a href="#">More</a>
+            <a href="homepage.html" target=_self title="THIS TAKES YOU TO THE HOMEPAGE">
+        Home
+    </a>
+            
+            <a href="about us.html" target=_self title="THIS TAKES YOU TO ABOUT US">
+        About Us
+    </a>
+            <a href="services.html" target=_self title="THIS TAKES YOU TO SERVICES">
+        Services
+    </a>
             <div class="dropdown-content">
-                <a href="#">Community</a>
-                <a href="#">Feedback</a>
-                <a href="#">Help</a>
-                <a href="#">Join our Team</a>
+                    <a href="#">Progress Tracking</a>
+                    <a href="#">Sessions</a>
+                    <a href="#">Diet Plan</a>
             </div>
+            <a href="contact us.html" target=_self title="THIS TAKES YOU TO CONTACT US">
+        Contact Us
+    </a>
+            <a href="#">
+                More
+            </a>
+                <div class="dropdown-content">
+                    <a href="#">Community</a>
+                    <a href="#">Feedback</a>
+                    <a href="#">Help</a>
+                    <a href="#">Join our Team</a>
+                </div>
         </nav>
         
         <section>
-            <h1>Welcome to Our Fitness and Wellness Website!</h1>
-            <p>Here, you will be able to have access to a variety of services for the benefit of your physical and mental well-being.
-                Our goal is for YOU to build and work for the BEST YOU you can be!
-                And Have fun doing it at the same time.
-                HAVE FUN!
-            </p>
+            <div class="search-bar">
+                <input type="text" placeholder="Tap to Search for any health related information...">
+            </div>
+                
+            <h1><big>Fitness Activities You Can Try!</h1></big>
+            <p><i><small>If it does not challenge you, it does not change you.</p></i></small>
+        </section>
+        
+        <section>
+            <h2>Recommended Fitness Activities</h2>
+            <p><i>These are activities and examples of workout routines you can try to improve your health and well-being.</p></i>
+            <p><i><small>You don't have to be extreme, Just Consistent.</p></i></small>
+            <div class="fit-ness">
+                <h3>Article Title</h3>
+                <p> Lorem </p>
+            </div>
+            
+            <div class="fit-ness">
+                <h3>Article Title</h3>
+                <p> Lorem </p>
+            </div>
+            
+            <div class="fit-ness">
+                <h3>Article Title</h3>
+                <p> Lorem </p>
+            </div>            
         </section>
         
         <footer>
-            <h5>&copy; 2024 Fitness and Wellness. All rights reserved.</h5>
+            <h5><i><small>&copy; 2024 Fitness and Wellness. All rights reserved.</h5></i><small>
         </footer>
         
         

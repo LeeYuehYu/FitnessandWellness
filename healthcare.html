@@ -27,9 +27,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
             }
             
             header img{
-                height: 50px;
+                height: 300px;
                 display:block;
                 margin: 0 auto;
+            }
+            
+            .logo {
+                height: 50px;
+                margin-left: 20px;
             }
             
             .profile-icon{
@@ -279,7 +284,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
     </head>
     <body>
         <header>
-            <img src="Fitness and Wellness Logo.png" alt="Fitness and Wellness Logo">
+            <img src="img/Fitness and Wellness Logo.png" id="logo">
             
         </header>
         
@@ -287,7 +292,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
             <div class="nav-left">
                 <div class="profile-icon" id="profile-icon">
                     <a href="profile management.html" id="profile-link">
-                        <img id="profile-image" src="profile_icon.png" alt="Profile Icon">
+                        <img id="profile-image" src="img/profile_icon.png" alt="Profile Icon">
                     </a>
                 </div>
 
@@ -373,6 +378,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                     </div>
                 </div>            
         </section>
+        
+        <script>
+            document.getElementById('profile-icon').addEventListener('click', function() {
+                window.location.href = 'profile management.html';
+            });
+        </script>
         
         <footer>
             <h5><i><small>&copy; 2024 Fitness and Wellness. All rights reserved.</h5></i><small>

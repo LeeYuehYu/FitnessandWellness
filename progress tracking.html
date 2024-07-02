@@ -32,6 +32,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 margin: 0 auto;
             }
             
+            .logo {
+                max-width: 200px;
+                height: auto;
+                object-fit: contain;
+                margin-left: 20px;
+            }
+            
             .profile-icon{
                 position: relative;
                 width: 50px;
@@ -350,7 +357,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
     </head>
     <body>
         <header>
-            <img src="Fitness and Wellness Logo.png" alt="Fitness and Wellness Logo">
+            <img src="./Website/Fitness and Wellness Logo.png" alt="Fitness and Wellness Logo" id="logo">
             
         </header>
         
@@ -422,9 +429,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                     <br><br>
                     <div class="progress-item">
                         <div class="progress-value"> Current Weight:</div>
-                        <div class="progress-bar">
-                            <div id="weight-progress" class="progress-bar-inner" style="width: 0%"></div>
-                        </div>
                         <div id="weight-value" class="progress-value">__kg</div>
                     </div>
                     <br><br>
@@ -702,147 +706,143 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 return element;
             }
 
-            //search functionality
+            // Search functionality
             const searchForm = getElement('search-form');
             const searchInput = getElement('search-input');
             const searchResult = getElement('search-result');
-            
+
             if (searchForm && searchInput && searchResult) {
                 searchForm.addEventListener('submit', function(event) {
-                    event.preventDefault(); // Prevent form submission
+                    event.preventDefault();
                     const searchQuery = searchInput.value;
                     searchResult.textContent = "You searched for: " + searchQuery;
                 });
 
-                // Add event listener for 'input' event to handle real-time search
                 searchInput.addEventListener('input', function() {
                     const searchQuery = this.value;
-                            searchResult.textContent = searchQuery ? "You are typing: " + searchQuery : "";
-            });
-        }
-
-        // Profile management
-        const profileIcon = getElement('profile-icon');
-        const profileLink = getElement('profile-link');
-        const profileManagement = getElement('profile-management');
-        const saveBtn = getElement('save-btn');
-        const cancelBtn = getElement('cancel-btn');
-        const editBtn = getElement('edit-btn');
-        const deleteBtn = getElement('delete-btn');
-        const isLoggedIn = false; // Replace with your logic to check if the user is logged in
-
-        if (profileLink) {
-            profileLink.href = isLoggedIn ? '/user-profile' : '/login';
-            profileLink.addEventListener('click', function(event) {
-                if (!isLoggedIn) {
-                    event.preventDefault();
-                    window.location.href = '/login';
-                } else {
-                    event.preventDefault();
-                    if (profileManagement) profileManagement.style.display = 'block';
-                }
-            });
-        }
-
-        // Progress tracking
-        const updateProgressBtn = getElement('update-progress-btn');
-        const progressFormPopup = getElement('progress-form-popup');
-        const cancelProgressButton = getElement('cancel-button');
-        const editButton = getElement('edit-button');
-        const editGoalsPopup = getElement('edit-goals-popup');
-        const closeEditGoalsButton = getElement('close-edit-goals');
-        const editGoalsForm = getElement('edit-goals-form');
-        const fitnessForm = getElement('fitness-form');
-
-        // Initialize goals with default values
-        let goals = {
-            steps: 10000,
-            workoutHours: 4,
-            workoutMinutes: 50,
-            weight: 70
-        };
-
-        if (updateProgressBtn && progressFormPopup) {
-            updateProgressBtn.addEventListener('click', function(){
-                progressFormPopup.style.display = 'flex';
-            });
-        }
-
-        if (cancelProgressButton && progressFormPopup) {
-            cancelProgressButton.addEventListener('click', function(){
-                progressFormPopup.style.display = 'none';
-            });
-        }
-
-        if (fitnessForm) {
-            fitnessForm.addEventListener('submit', function(e){
-                e.preventDefault();
-                const date = getElement('date').value;
-                const weight = parseFloat(getElement('weight').value);
-                const hours = parseInt(getElement('exercise-hours').value);
-                const minutes = parseInt(getElement('exercise-minutes').value);
-                const steps = parseInt(getElement('steps').value);
-
-                updateProgressDisplay(weight, hours, minutes, steps);
-                progressFormPopup.style.display = 'none';
-            });
-        }
-
-        if (editButton && editGoalsPopup) {
-            editButton.addEventListener('click', function(){
-                ['steps-goal', 'workout-goal-hours', 'workout-goal-minutes', 'weight-goal'].forEach(id => {
-                    const element = getElement(id);
-                    if (element) element.value = goals[id.replace(/-/g, '').replace('goal', '')];
+                    searchResult.textContent = searchQuery ? "You are typing: " + searchQuery : "";
                 });
-                editGoalsPopup.style.display = 'flex';
-            });
-        }
-
-        if (closeEditGoalsButton && editGoalsPopup) {
-            closeEditGoalsButton.addEventListener('click', function(){
-                editGoalsPopup.style.display = 'none';
-            });
-        }
-
-        if (editGoalsForm) {
-            editGoalsForm.addEventListener('submit', function(e){
-                e.preventDefault();
-                goals.steps = parseFloat(getElement('steps-goal').value);
-                goals.workout.hours = parseFloat(getElement('workout-goal-hours').value);
-                goals.workout.minutes = parseFloat(getElement('workout-goal-minutes').value);
-                goals.weight = parseFloat(getElement('weight-goal').value);
-
-                updateGoalsDisplay();
-                if (editGoalsPopup) editGoalsPopup.style.display = 'none';
-            });
-        }
-
-        function updateProgressDisplay(weight, hours, minutes, steps) {
-            const stepsProgress = (steps / goals.steps) * 100;
-            const workoutProgress = ((hours * 60 + minutes) / (goals.workoutHours * 60 + goals.workoutMinutes)) * 100;
-            const weightProgress = (weight / goals.weight) * 100;
-
-            updateProgress('steps', stepsProgress, `${steps} / ${goals.steps}`);
-            updateProgress('workout', workoutProgress, `${hours} Hours ${minutes} Minutes / ${goals.workout.hours} Hours ${goals.workout.minutes} Minutes`);
-            updateProgress('weight', weightProgress, `${weight}kg / ${goals.weight}kg`);
-           }
-
-           function updateProgress(type, progress, value) {
-               const progressElement = getElement(`${type}-progress`);
-               const valueElement = getElement(`${type}-value`);
-               if (progressElement) progressElement.style.width = `${progress}%`;
-               if (valueElement) valueElement.textContent = value;
             }
+
+            // Profile management
+            const profileLink = getElement('profile-link');
+            const isLoggedIn = false; // Replace with your logic to check if the user is logged in
+
+            if (profileLink) {
+                profileLink.href = isLoggedIn ? '/user-profile' : '/login';
+                profileLink.addEventListener('click', function(event) {
+                    if (!isLoggedIn) {
+                        event.preventDefault();
+                        window.location.href = '/login';
+                    }
+                });
+            }
+
+            // Progress tracking
+            const updateProgressBtn = getElement('update-progress-btn');
+            const progressFormPopup = getElement('progress-form-popup');
+            const cancelProgressButton = getElement('cancel-button');
+            const editButton = getElement('edit-button');
+            const editGoalsPopup = getElement('edit-goals-popup');
+            const closeEditGoalsButton = getElement('close-edit-goals');
+            const editGoalsForm = getElement('edit-goals-form');
+            const fitnessForm = getElement('fitness-form');
+
+            // Initialize goals with default values
+            let goals = {
+                steps: 10000,
+                workout: {
+                    hours: 4,
+                    minutes: 50
+                },
+                weight: 70
+            };
+
+            if (updateProgressBtn && progressFormPopup) {
+                updateProgressBtn.addEventListener('click', function(){
+                    progressFormPopup.style.display = 'flex';
+                });
+            }
+
+            if (cancelProgressButton && progressFormPopup) {
+                cancelProgressButton.addEventListener('click', function(){
+                    progressFormPopup.style.display = 'none';
+                });
+            }
+
+            if (fitnessForm) {
+                fitnessForm.addEventListener('submit', function(e){
+                    e.preventDefault();
+                    const date = getElement('date').value;
+                    const weight = parseFloat(getElement('weight').value);
+                    const hours = parseInt(getElement('exercise-hours').value);
+                    const minutes = parseInt(getElement('exercise-minutes').value);
+                    const steps = parseInt(getElement('steps').value);
+
+                    updateProgressDisplay(weight, hours, minutes, steps);
+                    progressFormPopup.style.display = 'none';
+                });
+            }
+
+            if (editButton && editGoalsPopup) {
+                editButton.addEventListener('click', function(){
+                    getElement('steps-goal').value = goals.steps;
+                    getElement('workout-goal-hours').value = goals.workout.hours;
+                    getElement('workout-goal-minutes').value = goals.workout.minutes;
+                    getElement('weight-goal').value = goals.weight;
+                    editGoalsPopup.style.display = 'flex';
+                });
+            }
+
+            if (closeEditGoalsButton && editGoalsPopup) {
+                closeEditGoalsButton.addEventListener('click', function(){
+                    editGoalsPopup.style.display = 'none';
+                });
+            }
+
+            if (editGoalsForm) {
+                editGoalsForm.addEventListener('submit', function(e){
+                    e.preventDefault();
+                    goals.steps = parseFloat(getElement('steps-goal').value);
+                    goals.workout.hours = parseFloat(getElement('workout-goal-hours').value);
+                    goals.workout.minutes = parseFloat(getElement('workout-goal-minutes').value);
+                    goals.weight = parseFloat(getElement('weight-goal').value);
+
+                    updateGoalsDisplay();
+                    editGoalsPopup.style.display = 'none';
+                });
+            }
+
+            function updateProgressDisplay(weight, hours, minutes, steps) {
+                const stepsProgress = (steps / goals.steps) * 100;
+                const workoutProgress = ((hours * 60 + minutes) / (goals.workout.hours * 60 + goals.workout.minutes)) * 100;
+                const weightProgress = (weight / goals.weight) * 100;
+
+                updateProgress('steps', stepsProgress, `${steps} / ${goals.steps}`);
+                updateProgress('workout', workoutProgress, `${hours} Hours ${minutes} Minutes / ${goals.workout.hours} Hours ${goals.workout.minutes} Minutes`);
+                updateProgress('weight', weightProgress, `${weight}kg / ${goals.weight}kg`);
+            }
+
+            function updateProgress(type, progress, value) {
+                const progressElement = getElement(`${type}-progress`);
+                const valueElement = getElement(`${type}-value`);
+                if (progressElement) progressElement.style.width = `${progress}%`;
+                if (valueElement) valueElement.textContent = value;
+            }
+
+            function updateGoalsDisplay() {
+                const stepsValue = getElement('steps-value');
+                const workoutValue = getElement('workout-value');
+                const weightGoalValue = getElement('weight-goal-value');
+
+                if (stepsValue) stepsValue.textContent = `0 / ${goals.steps}`;
+                if (workoutValue) workoutValue.textContent = `0 Hours 0 Minutes / ${goals.workout.hours} Hours ${goals.workout.minutes} Minutes`;
+                if (weightGoalValue) weightGoalValue.textContent = `${goals.weight}kg`;
+            }
+
+            // Initialize the display with default goals
+            updateGoalsDisplay();
         });
-
-
-        function updateGoalsDisplay() {
-            updateProgressDisplay(goals.weight, goals.workout.hours, goals.workout.minutes, goals.steps);
-        }
-
-        // Initialize the display with default goals
-        updateGoalsDisplay();
-
     </script>
         
         <footer>

@@ -365,7 +365,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                     <a href="profile management.html" id="profile-link">
                         <img id="profile-image" src="img/profile_icon.png" alt="Profile Icon">
                     </a>
-
                 </div>
 
                 <form id="search-form" class="search-bar">
@@ -694,6 +693,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         </main> 
         
     <script>
+        document.getElementById('profile-icon').addEventListener('click', function() {
+            window.location.href = 'profile management.html';
+        });
+        
         document.addEventListener('DOMContentLoaded', function() {
             // Function to safely get an element by ID
             function getElement(id) {

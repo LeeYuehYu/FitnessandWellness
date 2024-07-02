@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>FITNESS AND WELLNESS</title>
+        
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: hsl(218, 7%, 18%);
+            }
+
+            header{
+                background-color: background;
+                color: white;
+                padding: 20px 0;
+                display: flex;
+                text-align: center;
+                justify-content: space-between;
+            }
+
+            header img{
+                height: 50px;
+                display:block;
+                margin: 0 auto;
+            }
+
+            .profile-icon{
+                position: relative;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                overflow: hidden;
+                cursor: pointer;
+                margin-right: 20px;
+            }
+
+            .profile-icon img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            nav{
+                background-color: black;
+                padding: 10px 20px;
+                justify-content: space-between;
+                display: flex;
+                align-items: center;
+            }
+
+            .nav-left, nav-right {
+                flex: 1;
+                display: flex;
+                align-items: center;
+            }
+
+            .nav-right{
+                justify-content: flex-end;
+            }
+
+            nav a{
+                color: white;
+                text-decoration: none;
+                padding: 10px 15px;
+            }
+
+            nav a:hover{
+                color: aquamarine;
+            }
+
+            .dropdown{
+                position:relative;
+                display: inline-block;
+            }
+
+            .dropdown-content{
+                display: none;
+                position: absolute;
+                background-color: grey;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index:1;
+                top: 100%;
+                left:0;
+            }
+
+            .dropdown:last-child .dropdown-content {
+                right: 0;
+                left:auto;
+            }
+
+            .dropdown-content a{
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .dropdown-content a:hover{
+                background-color: hsl(218, 7%, 18%);
+            }
+
+            .dropdown:hover .dropdown-content{
+                display:block;
+            }
+
+            .section,
+            section {
+                padding: 40px;
+                text-align:center;
+            }
+            
+            .container {
+                max-width: 800px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: black;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
+
+            h1, h2 {
+                text-align: center;
+                color: white;
+            }
+
+            p {
+                line-height: 1.6;
+                color: aquamarine;
+            }
+            
+            .team-member {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                color: white;
+            }
+            
+            .team-member img {
+                width: 80px;
+                height: 80px;
+                border-radius:50%;
+                margin-right:20px;
+            }
+            
+            .team-member .info {
+                flex: 1;
+            }
+            
+            .team-member h3 {
+                margin: 5px 0;
+                color: white;
+            }
+            
+            .team-member p {
+                margin: 5px 0;
+                color: aquamarine;
+            }
+            
+            .white-text {
+                color: white;
+            }
+
+            footer{
+                background-color: black;
+                color: white;
+                padding: 10px 0;
+                text-align: center;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <header>
+            <img src="Fitness and Wellness Logo.png" alt="Fitness and Wellness Logo">
+        </header>
+
+        <nav>
+            <div class="nav-left">
+                <div class="profile-icon" id="profile-icon">
+                    <a href="login.html" id="profile-link">
+                        <img id="profile-image" src="profile_icon.png" alt="Profile Icon">
+                    </a>
+                    <input type="file" id="profile-upload" accept="image/*">
+                </div>
+            
+            <div class="nav-right"> 
+                <a href="homepage.html" target=_self >Home</a>
+
+                <a href="services.html" target=_self >Services</a> 
+
+                <div class="dropdown"> 
+                <a href="#">More</a>
+                    <div class="dropdown-content">
+                        <a href="feedback.html">Feedback</a>
+                        <a href="FAQ1.html">Help</a>
+                        <a href="join our team.html">Join our Team</a>
+                    </div>
+                </div> 
+            </div>
+        </nav>
+        
+        <div class="container">
+            <h1>About Us</h1>
+            <h2>Our Mission</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum convallis tortor, id tincidunt mauris tincidunt nec.</p>
+        </div>
+        <div class="container">
+            <h2>Our Vision</h2>
+            <p>Nullam ac elit ligula. Integer tincidunt eros vitae sapien luctus, in egestas sapien tincidunt. Curabitur rutrum gravida enim id molestie.</p>
+        </div>
+        
+        <div class="container">
+            <h2>Our Team</h2>
+
+            <div class="team-member">
+                <img src="team-member1.jpg" alt="Team Member 1">
+                <div class="info">
+                    <h3>John Doe</h3>
+                    <p>Co-founder & Fitness Trainer</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <img src="team-member2.jpg" alt="Team Member 2">
+                <div class="info">
+                    <h3>Jane Smith</h3>
+                    <p>Nutritionist & Wellness Coach</p>
+                    <p>Phasellus non velit sagittis, tincidunt lacus non, convallis arcu.</p>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <img src="team-member3.jpg" alt="Team Member 3">
+                <div class="info">
+                    <h3>Michael Brown</h3>
+                    <p>Personal Trainer</p>
+                    <p>Etiam nec augue auctor, vestibulum risus vel, tincidunt arcu.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <h2>Our Story</h2>
+            <p>Donec id eleifend quam. Integer nec urna ac orci mollis fermentum non nec sem.</p>
+        </div>
+        
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or inquiries, feel free to contact us at: 
+                <br><br>
+            <a href="#" target="_self"><i class="fab fa-instagram"></i>Instagram</a>
+                
+                <a href="#" target="_self"><i class="fab fa-twitter"></i>Twitter</a>
+                
+                <a href="#" target="_self"><i class="fab fa-phone"></i>04-3456789</a>
+                
+                <a href="mailto:enquiry@fitnessandwellness.com" target="Email"><i class="fab fa-envelope"></i>enquiry@fitnessandwellness.com</a>
+            </p>
+        </div>
+        
+        <div class="container">
+            <h2>Join Our Community</h2>
+            <p>Nullam ac elit ligula. Integer tincidunt eros vitae sapien luctus, in egestas sapien tincidunt. Curabitur rutrum gravida enim id molestie.</p>
+            <a href="register.html">Join Us</a>
+        </div>
+        
+    </body>
+    
+    <footer>
+        <h5>&copy; 2024 Fitness and Wellness. All rights reserved.</h5>
+    </footer>
+</html>

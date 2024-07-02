@@ -8,6 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <title>FITNESS AND WELLNESS</title>
+
         
         <style>
             body {
@@ -145,141 +146,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 text-align:center;
             }
             
-            .progress-container,
-            .container {
-                max-width: 800px;
-                margin: 50px auto;
-                padding: 20px;
-                background-color: black;
-                color: white;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                text-align: center;
-                text-justify: inter-word;
+            .social-icons a {
+                color: aquamarine;
+                text-decoration: none;
+                margin: 0 10px;
+            }
+            
+            .social-icons a:hover {
+                color: aqua;
+                text-decoration: underline;
             }
             
             h2 {
                 text-align: center;
                 color: white;
             }
-
-            .progress-form form label,
-            .progress-form form input,
-            .progress-form form button {
-                background-color: black;
-                padding: 20px;
-                margin: 0 auto 10px auto;
-                display: block;
-            }
-            
-            .progress-display {
-                background-color: black;
-                padding: 20px;
-            }
-            
-            .progress {
-                margin-top: 20px;
-            }
-            
-            .progress-item {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            
-            .progress-bar {
-                width: 100%;
-                background-color: black;
-                border-radius: 5px;
-                overflow: hidden;
-            }
-            
-            .progress-bar-inner {
-                height: 20px;
-                background-color: aquamarine;
-                transition: width 0.5s ease-in-out;
-            }
-            
-            .progress-value {
-                margin-left: 10px;
-            }
-            
-            
-            .progress-form h3 {
-                color:white;
-            }
-            
-            .duration-input {
-                display: inline-block;
-                margin-right: 10px;
-               }
-               
-            .article img {
-                float: left;
-                margin-right: 15px;
-                max-width: 150px;
-                height: auto;
-            }
-
-            .articles {
-                margin-bottom: 20px;
-                background-color: azure;
-                padding: 20px;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                width: calc(33.333% - 20px);
-                box-sizing: border-box;
-            }
-            
-            .articles-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                gap: 20px;
-            }
             
             .white-text {
                 color: white;
             }
-            
-            .article h3 {
-                margin-top: 0;
-            }
-            
-            .article p {
-                margin-bottom: 30px;
-            }
-            
+
             .section{
                 padding: 40px;
                 text-align:center;
             }
 
-            .see-more {
-                color: aquamarine;
-                text-decoration: none;
-                float: right;
-                margin-right: 20px;
-            }
-            
-            .see-more:hover {
-                text-decoration: underline;
-                color: aqua;
-            }
-            
             footer{
                 background-color: black;
                 color: white;
                 padding: 10px 0;
                 text-align: center;
             }
-        </style>
-        
+        </style>  
     </head>
+    
     <body>
         <header>
-            <img src="Fitness and Wellness Logo.png" alt="Fitness and Wellness Logo">
+            <img src="C:\Users\Lexie\OneDrive - student.newinti.edu.my\Documents\SEM 5\Web Development\Assignments\Website\Fitness and Wellness Logo.png" alt="Fitness and Wellness Logo">
             
         </header>
         
@@ -326,59 +229,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         </nav>
         
         <section>
-            <h1 class="white-text"><big>Fitness Activities You Can Try!</h1></big>
-            <p class="white-text"><i><small>If it does not challenge you, it does not change you.</p></i></small>
-        </section>
-        
-        <section>
-            <h2 class="white-text">Recommended Fitness Activities</h2>
-            <p class="white-text"><i>These articles are recommended based on your health.</p></i>
-                <p class="white-text"><i><small>Fitness starts with what you eat.</p></i></small>
-                <div class="articles-container">
-                    <div class="articles">
-                        <img src="https://via.placeholder.com/150x150.png?text=Nutrition" alt="Nutrition">
-                        <h3>Nutrition Tips for Muscle Gain and Fat Loss</h3>
-                        <p>Explore the best eating strategies to support your fitness goals, whether you're looking to build muscle or lose fat.</p>
-                        <a href="#">Read more>>></a>
-                    </div> 
-                    <div class="articles">
-                        <img src="https://via.placeholder.com/150x150.png?text=Meditation" alt="Meditation">
-                        <h3>The Benefits of Meditation for Mental Health</h3>
-                        <p>Learn how incorporating meditation into your daily routine can reduce stress and improve your mental well-being.</p>
-                        <a href="#">Read more>>></a>
-                    </div>
-
-                    <div class="articles">
-                        <img src="https://via.placeholder.com/150x150.png?text=Exercise" alt="Exercise">
-                        <h3>10 Essential Exercises for a Full-Body Workout</h3>
-                        <p>Discover the most effective exercises to target all major muscle groups and improve your overall fitness.</p>
-                        <a href="#">Read more>>></a>
-                    </div>
-                    <div class="articles">
-                    <img src="https://via.placeholder.com/150x150.png?text=Meditation" alt="Meditation">
-                    <h3>The Benefits of Meditation for Mental Health</h3>
-                    <p>Learn how incorporating meditation into your daily routine can reduce stress and improve your mental well-being.</p>
-                    <a href="#">Read more>>></a>
-                    </div>
-
-                    <div class="articles">
-                        <img src="https://via.placeholder.com/150x150.png?text=Exercise" alt="Exercise">
-                        <h3>10 Essential Exercises for a Full-Body Workout</h3>
-                        <p>Discover the most effective exercises to target all major muscle groups and improve your overall fitness.</p>
-                        <a href="#">Read more>>></a>
-                    </div>
+            <h2>CONTACT US</h2>
+            
+            <div class="social-icons">
+                
+                <a href="#" target="_self"><i class="fab fa-phone"></i>04-3456789</a>
+                
+                <a href="mailto:enquiry@fitnessandwellness.com" target="Email"><i class="fab fa-envelope"></i>enquiry@fitnessandwellness.com</a>
+                
+            </div>
+            <br><br><br>
+                <h2>Join Our Community</h2>
+                
+                <div class="social-icons">
+                    <a href="#" target="_self"><i class="fab fa-discord">Discord</i></a>
+                        
+                    <a href="#" target="_self"><i class="fab fa-instagram"></i>Instagram</a>
                     
-                    <div class="articles">
-                        <img src="https://via.placeholder.com/150x150.png?text=Exercise" alt="Exercise">
-                        <h3>10 Essential Exercises for a Full-Body Workout</h3>
-                        <p>Discover the most effective exercises to target all major muscle groups and improve your overall fitness.</p>
-                        <a href="#">Read more>>></a>
-                    </div>
-                </div>            
+                    <a href="#" target="_self"><i class="fab fa-twitter"></i>Twitter</a>
+                        
+                </div>
+            <br><br><br>
+                <h2>Join Our Team</h2>
+                
+                <div class="social-icons">
+                    <a href="#" target="_self"><i class="fab fa-discord">Discord</i></a>
+                        
+                    <a href="#" target="_self"><i class="fab fa-instagram"></i>Instagram</a>
+                    
+                    <a href="#" target="_self"><i class="fab fa-twitter"></i>Twitter</a>
+                        
+                </div>
+                
+            
         </section>
         
         <footer>
-            <h5><i><small>&copy; 2024 Fitness and Wellness. All rights reserved.</h5></i><small>
+            <h5>&copy; 2024 Fitness and Wellness. All rights reserved.</h5>
         </footer>
         
         

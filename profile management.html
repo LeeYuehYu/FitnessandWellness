@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>FITNESS AND WELLNESS</title>
+        
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: hsl(218, 7%, 18%);
+            }
+            
+            .container {
+                max-width: 800px;
+                margin: 70px auto;
+                padding: 40px;
+                background-color: activeborder;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            h2 {
+                text-align: center;
+                color: white;
+            }
+            
+            label {
+                color: white;
+                display: block;
+                margin-top: 10px;
+            }
+            
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="file"],
+            input[type="tel"],
+            input[type="date"]{
+                width: 100%;
+                padding: 10px;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+            
+            input[type="submit"] {
+                width: 100%;
+                padding: 10px;
+                background-color: aquamarine;
+                color: black;
+                border: none;
+                border-radius:5px;
+                cursor: pointer;
+            }
+            
+            input[type="submit"]:hover {
+                background-color: chartreuse;
+            }
+            
+            .error-message {
+                color: red;
+                margin-top: 5px;
+            }
+            
+            .success-message {
+                color:green;
+                margin-top: 5px;
+            }
+            
+            .profile-message {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               margin-top: 20px;
+            }
+            
+            .profile-picture {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            
+            .profile-picture img {
+                max-width: 150px;
+                max-height: 150px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+            
+            .profile-buttons {
+                margin-top: 20px;
+                text-align: center;
+            }
+            
+            .profile-buttons button {
+                margin: 10px;
+            }
+            
+            .profile-icon {
+                position: relative;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                overflow: hidden;
+                cursor: pointer;
+                margin-right: 20px;
+                }
+            
+            .profile-icon img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                }
+
+            
+            footer{
+                background-color: black;
+                color: white;
+                padding: 10px 0;
+                bottom: 0;
+                position: fixed;
+                width: 100%;
+                text-align: center;
+            }
+            
+        </style>
+        
+    </head>
+    <body> 
+        <div class="container" id="profile-management">
+            <h2>Profile Management</h2>
+            <form id="profileForm"> 
+                <div class="profile-picture">
+                    <img src="profile_icon.jpg" alt="Profile Picture" id="profilePicPreview">
+                    <input type="file" name="profile_picture" id="profilePictureInput" accept="image/*" oncharge="previewProfilePicture(event)">  
+                </div>
+                
+                <label for="username">Username:</label>
+                <input type="text" name="username" placeholder="Username" required>
+                <label for="name">Name:</label>
+                <input type="text" name="name" placeholder="Name" required> 
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder="Email" required>
+                <label for="tel">Phone Number:</label>
+                <input type="tel" name="phone number" placeholder="Phone Number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required> 
+                <label for="bday">Birthday:</label>
+                <input type="date" name="Birthday" required>
+                <label for="password">Password:</label>
+                <input type="password" name="password" placeholder="Current Password" required>
+                <input type="password" name="new password" placeholder="New Password" required>
+                <input type="password" name="confirm password" placeholder="Confirm Password" required>
+                <div id="passwordError" class="error-message"></div>
+                
+                <div class="profile-buttons">
+                    <button type="button" id="save-btn">Save</button>
+                    <a href="progress tracking.html"><button type="button" id="cancel-btn">Cancel</button></a>
+                    <button type="button" id="edit-btn">Edit</button>
+                    <button type="button" id="delete-btn">Delete</button>
+                </div>
+            </form>
+            
+            <div id="successMessage" class="success-message"></div>
+            </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const profileIcon = document.getElementById('profile-icon');
+                const profileLink = document.getElementById('profile-link');
+                const profileManagement = document.getElementById('profile-management');
+                const saveBtn = document.getElementById('save-btn');
+                const editBtn = document.getElementById('edit-btn');
+                const deleteBtn = document.getElementById('delete-btn');
+                const isLoggedIn = false; // Replace with your logic to check if the user is logged in
+
+                profileLink.href = isLoggedIn ? '/user-profile' : '/login';
+
+                profileLink.addEventListener('click', function(event) {
+                    if (!isLoggedIn) {
+                        event.preventDefault();
+                        window.location.href = '/login';
+                    } else {
+                        event.preventDefault();
+                        profileManagement.style.display = 'block';
+                    }
+                });
+
+                saveBtn.addEventListener('click', function() {
+                    window.location.href = '/progress-tracking';
+                    // Save profile info logic
+                    alert('Profile info saved.');
+                });
+
+                editBtn.addEventListener('click', function() {
+                    // Enable editing logic
+                    alert('Editing profile info.');
+                });
+
+                deleteBtn.addEventListener('click', function() {
+                    // Confirmation prompt before deleting profile
+                    const confirmDelete = confirm("Are you sure you want to delete your profile?");
+                    if (confirmDelete) {
+                        // Delete profile logic
+                        alert('Profile info deleted.');
+                    } else {
+                        // Cancel delete action
+                        console.log('Delete action cancelled.');
+                    }
+                });
+            });
+            
+            // Function to preview profile picture
+            function previewProfilePicture(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        profilePicPreview.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+        </script>
+        
+        <footer>
+            <h5><i><small>&copy; 2024 Fitness and Wellness. All rights reserved.</h5></i><small>
+        </footer>
+        
+    
+        
+    </body>
+</html>

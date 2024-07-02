@@ -25,13 +25,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 text-align: center;
                 justify-content: space-between;
             }
-
+            
             header img{
-                height: 50px;
+                height: 300px;
                 display:block;
                 margin: 0 auto;
             }
-
+            
+            .logo {
+                height: 50px;
+                margin-left: 20px;
+            }
+            
             .profile-icon{
                 position: relative;
                 width: 50px;
@@ -41,7 +46,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 cursor: pointer;
                 margin-right: 20px;
             }
-
+            
             .profile-icon img {
                 width: 100%;
                 height: 100%;
@@ -207,14 +212,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
     
     <body>
         <header>
-            <img src="C:\Users\Lexie\OneDrive - student.newinti.edu.my\Documents\SEM 5\Web Development\Assignments\Website\Fitness and Wellness Logo.png" alt="Fitness and Wellness Logo">
+            <img src="img/Fitness and Wellness Logo.png" id="logo">
+            
         </header>
-
+        
         <nav>
             <div class="nav-left">
-               <div class="profile-icon" id="profile-icon">
+                <div class="profile-icon" id="profile-icon">
                     <a href="profile management.html" id="profile-link">
-                        <img id="profile-image" src="profile_icon.png" alt="Profile Icon">
+                        <img id="profile-image" src="img/profile_icon.png" alt="Profile Icon">
                     </a>
                 </div>
 
@@ -311,6 +317,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 <a href="mailto:enquiry@fitnessandwellness.com" target="Email"><i class="fab fa-envelope"></i>enquiry@fitnessandwellness.com</a>
             </p>
         </div>
+        
+        <script>
+            document.getElementById('profile-icon').addEventListener('click', function() {
+                window.location.href = 'profile management.html';
+            });
+        </script>
         
     </body>
 </html>

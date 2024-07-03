@@ -18,7 +18,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
             }
             
             .container {
-                max-width: 800px;
+                max-width: 700px;
                 margin: 70px auto;
                 padding: 40px;
                 background-color: activeborder;
@@ -119,9 +119,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 width: 50px;
                 height: 50px;
                 object-fit: cover;
-                }
-
-            
+            }
+                
             footer{
                 background-color: black;
                 color: white;
@@ -139,10 +138,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <div class="container" id="profile-management">
             <h2>Profile Management</h2>
             <form id="profileForm"> 
-                <form id="profile-pic-form" action="upload_profile_pic.php" method="post" enctype="multipart/form-data">
+                <div id="profile-pic-form" action="upload_profile_pic.php" method="post" enctype="multipart/form-data">
                     <label for="profile-pic">Profile Picture: </label>
-                    <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
-                </form>
+                    <input type="file" id="profile-pic" name="profile-picture" accept="image/*">
+                </div>
                 <img id="preview" src="img/profile_icon.png" alt="Profile Preview" style="display: none;">
                 
                 <label for="username">Username:</label>
@@ -166,6 +165,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                     <a href="progress tracking.html"><button type="button" id="cancel-btn">Cancel</button></a>
                     <button type="button" id="edit-btn">Edit</button>
                     <button type="button" id="delete-btn">Delete</button>
+                    <a href="login.html"><button type="button" id="logout-btn">Log Out</button></a>
                 </div>
             </form>
             
@@ -193,12 +193,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
 
             
             document.addEventListener('DOMContentLoaded', function() {
+                const profileForm = document.getElementById('profileForm');
                 const profileIcon = document.getElementById('profile-icon');
                 const profileLink = document.getElementById('profile-link');
                 const profileManagement = document.getElementById('profile-management');
                 const saveBtn = document.getElementById('save-btn');
                 const editBtn = document.getElementById('edit-btn');
                 const deleteBtn = document.getElementById('delete-btn');
+                const cancelBtn = document.getElementById('cancel-btn');
+                const profilePicInputb=bdocument.getElementById('profile-pic');
+                const inputs = profileForm.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="password"]');
+                const newPasswordInput = profileForm.querySelector('input[name="new password"]');
+                const confirmPasswordInput = profileForm.querySelector('input[name="confirm password"]');
                 const isLoggedIn = false; // Replace with your logic to check if the user is logged in
 
                 profileLink.href = isLoggedIn ? '/user-profile' : '/login';
@@ -213,15 +219,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                     }
                 });
 
+                function toggleEditMode(editMode) {
+                    profilePicInput.disabled = !editMode;
+                    inputs.forEach(input => input.disabled = !editMode);
+                    newPasswordInput.style.display = editMode ? 'block' : 'none';
+                    confirmPasswordInput.style.display = editMode ? 'block' : 'none';
+                    saveBtn.style.display = editMode ? 'inline' : 'none';
+                    cancelBtn.style.display = editMode ? 'inline' : 'none';
+                    editBtn.style.display = editMode ? 'none' : 'inline';
+                    deleteBtn.style.display = editMode ? 'none' : 'inline';
+                }
+
                 saveBtn.addEventListener('click', function() {
                     window.location.href = '/progress-tracking';
-                    // Save profile info logic
                     alert('Profile info saved.');
+                    // Save profile info logic
+                    profilePicInput.disabled = true;
+                    inputs.forEach(input => input.disabled = true);
+                    newPasswordInput.style.display = 'none';
+                    confirmPasswordInput.style.display = 'none';
+                    saveBtn.style.display = 'none';
+                    cancelBtn.style.display = 'none';
+                    editBtn.style.display = 'inline';
+                    deleteBtn.style.display = 'inline';
+                    toggleEditMode(flase);
                 });
 
                 editBtn.addEventListener('click', function() {
-                    // Enable editing logic
+                    profilePicInput.disabled = false;
+                    inputs.forEach(input => input.disabled = false);
+                    newPasswordInput.style.display = 'block';
+                    confirmPasswordInput.style.display = 'block';
+                    saveBtn.style.display = 'inline';
+                    cancelBtn.style.display = 'inline';
+                    editBtn.style.display = 'none';
+                    deleteBtn.style.display = 'none';
                     alert('Editing profile info.');
+                    toggleEditMode(true);
                 });
 
                 deleteBtn.addEventListener('click', function() {

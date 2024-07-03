@@ -94,6 +94,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 max-height: 50px;
                 border-radius: 50%;
                 margin-right: 10px;
+                overflow: hidden;
+            }
+            
+            .profile-picture img, .preview {
+                max-width: 50px;
+                max-height: 50px;
+                border-radius: 50%;
+                margin-right: 10px;
+                object-fit: cover;
             }
             
             .profile-buttons {
@@ -120,7 +129,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 height: 50px;
                 object-fit: cover;
             }
-                
+            
+            .preview {
+                max-width: 30px;
+                max-height: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+                display: none;
+            }
+            
             footer{
                 background-color: black;
                 color: white;
@@ -138,11 +155,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <div class="container" id="profile-management">
             <h2>Profile Management</h2>
             <form id="profileForm"> 
-                <div id="profile-pic-form" action="upload_profile_pic.php" method="post" enctype="multipart/form-data">
+                <div id="profile-pic-form" method="post" enctype="multipart/form-data">
                     <label for="profile-pic">Profile Picture: </label>
                     <input type="file" id="profile-pic" name="profile-picture" accept="image/*">
                 </div>
-                <img id="preview" src="img/profile_icon.png" alt="Profile Preview" style="display: none;">
+                <img id="preview" src="img/profile_icon.png" alt="Profile Preview" style="display: block;width:250px;">
                 
                 <label for="username">Username:</label>
                 <input type="text" name="username" placeholder="Username" required>
@@ -186,7 +203,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 if (file) {
                     reader.readAsDataURL(file);
                 } else {
-                    preview.src = "";
+                    preview.src = "img/profile_icon.png";
                     preview.style.display = 'none';
                 }
             });
@@ -242,7 +259,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                     cancelBtn.style.display = 'none';
                     editBtn.style.display = 'inline';
                     deleteBtn.style.display = 'inline';
-                    toggleEditMode(flase);
+                    toggleEditMode(false);
                 });
 
                 editBtn.addEventListener('click', function() {

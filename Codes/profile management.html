@@ -236,55 +236,49 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                     }
                 });
 
+                toggleEditMode(false);
+
                 function toggleEditMode(editMode) {
                     profilePicInput.disabled = !editMode;
                     inputs.forEach(input => input.disabled = !editMode);
-                    newPasswordInput.style.display = editMode ? 'block' : 'none';
-                    confirmPasswordInput.style.display = editMode ? 'block' : 'none';
+                    newPasswordInput.disabled = !editMode;
+                    confirmPasswordInput.disabled = !editMode;
                     saveBtn.style.display = editMode ? 'inline' : 'none';
                     cancelBtn.style.display = editMode ? 'inline' : 'none';
                     editBtn.style.display = editMode ? 'none' : 'inline';
                     deleteBtn.style.display = editMode ? 'none' : 'inline';
                 }
 
+
+                editBtn.addEventListener('click', function() {
+                    toggleEditMode(true);
+                    alert('You can now edit your profile information.');
+                });
+
                 saveBtn.addEventListener('click', function() {
-                    window.location.href = '/progress-tracking';
-                    alert('Profile info saved.');
-                    // Save profile info logic
-                    profilePicInput.disabled = true;
-                    inputs.forEach(input => input.disabled = true);
-                    newPasswordInput.style.display = 'none';
-                    confirmPasswordInput.style.display = 'none';
-                    saveBtn.style.display = 'none';
-                    cancelBtn.style.display = 'none';
-                    editBtn.style.display = 'inline';
-                    deleteBtn.style.display = 'inline';
+                    // Here you would typically send the form data to a server
+                    // For this example, we'll just show an alert
+                    alert('Profile information saved successfully.');
                     toggleEditMode(false);
                 });
 
-                editBtn.addEventListener('click', function() {
-                    profilePicInput.disabled = false;
-                    inputs.forEach(input => input.disabled = false);
-                    newPasswordInput.style.display = 'block';
-                    confirmPasswordInput.style.display = 'block';
-                    saveBtn.style.display = 'inline';
-                    cancelBtn.style.display = 'inline';
-                    editBtn.style.display = 'none';
-                    deleteBtn.style.display = 'none';
-                    alert('Editing profile info.');
-                    toggleEditMode(true);
-                });
+                
 
                 deleteBtn.addEventListener('click', function() {
-                    // Confirmation prompt before deleting profile
-                    const confirmDelete = confirm("Are you sure you want to delete your profile?");
+                    const confirmDelete = confirm("Are you sure you want to delete your account? This action cannot be undone.");
                     if (confirmDelete) {
-                        // Delete profile logic
-                        alert('Profile info deleted.');
-                    } else {
-                        // Cancel delete action
-                        console.log('Delete action cancelled.');
+                        // Here you would typically send a request to the server to delete the account
+                        // For this example, we'll just show an alert
+                        alert('Your account has been deleted.');
+                        // Redirect to homepage or login page after deletion
+                        window.location.href = 'login.html';
                     }
+                });
+                
+                cancelBtn.addEventListener('click', function() {
+                    // Reset form to original values
+                    profileForm.reset();
+                    toggleEditMode(false);
                 });
             });
             

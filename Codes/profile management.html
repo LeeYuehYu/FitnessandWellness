@@ -138,6 +138,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 display: none;
             }
             
+            select option {
+                background-color: grey;
+                color: black;
+            }
+            select option:hover {
+                background-color: darkgrey;
+            }
+
+            .buttons {
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .buttons button{
+                margin-left:10px;
+            }
+            
             footer{
                 background-color: black;
                 color: white;
@@ -171,6 +188,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 <input type="tel" name="phone number" placeholder="Phone Number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required> 
                 <label for="bday">Birthday:</label>
                 <input type="date" name="Birthday" required>
+                
+                <label for="gender">Gender: </label><br>
+                <select name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="others">Others</option>
+                </select>
+                <br><br>
+                <label for="height">Height (cm):</label>
+                <input type="text" name="height" placeholder="Height" required>
+                <label for="weight">Weight (kg):</label>
+                <input type="text" name="weight" placeholder="Weight" required>
                 <label for="password">Password:</label>
                 <input type="password" name="password" placeholder="Current Password" required>
                 <input type="password" name="new password" placeholder="New Password" required>

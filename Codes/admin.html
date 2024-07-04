@@ -189,10 +189,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 </a>
             </div>
         </div>
-        <h1>Dashboard</h1>
+        
         <div class="nav-right">
             <a href="#">Dashboard</a>
-            <a href="#">Users</a>
+            <a href="#" onclick='fetchUsers()'>Users</a> <!-- Added onclick event to fetch users -->
             <div class="dropdown">
                 <a href="#">Articles</a>
                 <div class="dropdown-content">
@@ -206,8 +206,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
     </nav>
 
     <main>
+        <h1>Dashboard</h1>
         <section id="add-article">
-            <h2>Add New Article</h2>
+            <h2><u>Add New Article</u></h2>
             <form id="addArticleForm" method="post" action="add_article.php">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" required>
@@ -226,7 +227,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         </section>
 
         <section id="edit-article" style="display:none;">
-            <h2>Edit Article</h2>
+            <h2><u>Edit Article</u></h2>
             <form id="editArticleForm" method="post" action="edit_article.php">
                 <input type="hidden" id="editArticleId" name="article_id">
                 
@@ -258,6 +259,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                         <th>Category</th>
                         <th>Actions</th>
                     </tr>
+                    
+        <section id="users-list">
+            <h2>Users</h2>
+            <table id="usersTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
                 </thead>
                 <tbody id="articlesTableBody">
                     <!-- Article rows will be populated here via JavaScript -->
@@ -272,6 +285,39 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
             { id: 1, title: "First Article", author: "Admin", category: "Fitness" },
             { id: 2, title: "Second Article", author: "Admin", category: "Wellness" },
         ];
+
+        function fetchUsers() {
+            fetch('users.php') // Replace with your backend endpoint
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Assuming server responds with JSON data
+            })
+            .then(users => {
+                populateUsers(users); // Call function to populate users in the UI
+            })
+            .catch(error => {
+                console.error('Error fetching users:', error);
+                // Optionally display an error message to the user
+            });
+        }
+
+        function populateUsers(users) {
+            const usersTableBody = document.getElementById('usersTableBody');
+            usersTableBody.innerHTML = '';
+
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.role}</td>
+                `;
+                usersTableBody.appendChild(row);
+            });
+        }
 
         function populateArticles() {
             const articlesTableBody = document.getElementById('articlesTableBody');
@@ -292,6 +338,39 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 articlesTableBody.appendChild(row);
             });
         }
+        
+        document.getElementById('addArticleForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            const formData = new FormData(this);
+
+            // Optional: You can validate form data here before sending it to the server
+
+            // Example: Send form data to the server using fetch API
+            fetch('add_article.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Assuming server responds with JSON data
+            })
+            .then(data => {
+                // Handle successful response from server
+                console.log('Article added successfully:', data);
+                // Optionally, reset the form or perform other actions after successful submission
+                document.getElementById('addArticleForm').reset();
+            })
+            .catch(error => {
+                // Handle errors
+                console.error('Error adding article:', error);
+                // Optionally, display an error message to the user
+            });
+        });
+
 
         function editArticle(articleId) {
             const article = articles.find(a => a.id === articleId);
@@ -322,6 +401,60 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
 
         // Populate articles on page load
         document.addEventListener('DOMContentLoaded', populateArticles);
+
+        // Add new article form submission handling
+        document.getElementById('addArticleForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            const formData = new FormData(this); // Get form data
+
+            fetch('add_article.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Assuming server responds with JSON data
+            })
+            .then(data => {
+                // Handle successful response from server
+                console.log('Article added successfully:', data);
+
+                // Add the new article to the DOM
+                const newArticle = {
+                    id: data.id, // Assuming the server returns the new article ID
+                    title: formData.get('title'),
+                    author: formData.get('author'),
+                    category: formData.get('category')
+                };
+
+                articles.push(newArticle); // Add new article to local data
+
+                // Update the UI
+                const articlesTableBody = document.getElementById('articlesTableBody');
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${newArticle.id}</td>
+                    <td>${newArticle.title}</td>
+                    <td>${newArticle.author}</td>
+                    <td>${newArticle.category}</td>
+                    <td>
+                        <button onclick="editArticle(${newArticle.id})">Edit</button>
+                        <button onclick="deleteArticle(${newArticle.id})">Delete</button>
+                    </td>
+                `;
+                articlesTableBody.appendChild(newRow);
+
+                // Optionally reset the form or perform other actions
+                document.getElementById('addArticleForm').reset();
+            })
+            .catch(error => {
+                // Handle errors
+                console.error('Error adding article:', error);
+                // Optionally display an error message to the user
+            });
+        });
     </script>
 </body>
 </html>
